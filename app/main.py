@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.auth import router as auth_router
 from app.workspaces import router as workspace_router
 from app.auto_upload import router as auto_upload_router
+from app.user import router as user_router
 # from app.powerbi_folder_migration import router as folder_router
 
 
@@ -27,11 +28,16 @@ app.add_middleware(
     secret_key="super-secret-key",
     same_site="none",
     https_only=True
+    # same_site="lax",
+    # https_only=False
+
 )
 
 app.include_router(auth_router)
 app.include_router(workspace_router)
 app.include_router(auto_upload_router)
+app.include_router(user_router)
+
 # app.include_router(folder_router)
 
 @app.get("/")

@@ -4,6 +4,7 @@ requests
 python-dotenv
 msal
 azure-storage-blob
+pyjwt
 # fastapi
 # uvicorn
 # gunicorn

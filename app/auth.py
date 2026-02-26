@@ -33,8 +33,15 @@ def auth_callback(request: Request, code: str):
 
     # Store token in session
     request.session["access_token"] = token["access_token"]
+    request.session["id_token"] = token.get("id_token")
+
+    print("TOKEN RESPONSE:", token.keys())
+    print("ID TOKEN:", token.get("id_token"))
 
     # Redirect to frontend success page
     return RedirectResponse(
         "https://id-preview--1115fb10-6ea8-4052-8d1b-31238016c02e.lovable.app/powerbi-auth-success"
     )
+    # return {"message": "Login successful"}
+    # return RedirectResponse("http://localhost:8000/me")
+
