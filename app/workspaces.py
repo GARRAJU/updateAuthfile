@@ -101,7 +101,8 @@ def get_sp_access_token():
 @router.get("/workspaces")
 def get_workspaces():
 
-    access_token = get_sp_access_token()
+    access_token = request.session.get("access_token")
+ 
 
     headers = {
         "Authorization": f"Bearer {access_token}"
@@ -157,7 +158,8 @@ def create_workspace(payload: dict = Body(...)):
     if not workspace_name:
         raise HTTPException(status_code=400, detail="workspace_name is required")
 
-    access_token = get_sp_access_token()
+    access_token = request.session.get("access_token")
+ 
 
     headers = {
         "Authorization": f"Bearer {access_token}",
@@ -198,7 +200,8 @@ def add_service_principal_to_workspace(payload: dict = Body(...)):
     if not SP_OBJECT_ID:
         raise HTTPException(status_code=500, detail="SP_OBJECT_ID not configured")
 
-    access_token = get_sp_access_token()
+    access_token = request.session.get("access_token")
+ 
 
     headers = {
         "Authorization": f"Bearer {access_token}",
